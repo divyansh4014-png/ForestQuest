@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0 0% 100%);
+  --foreground: hsl(210 25% 7.8431%);
+  --card: hsl(180 6.6667% 97.0588%);
+  --card-foreground: hsl(210 25% 7.8431%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(210 25% 7.8431%);
+  --primary: hsl(142.9 69.2% 53.5%);
+  --primary-foreground: hsl(0 0% 100%);
+  --secondary: hsl(210 25% 7.8431%);
+  --secondary-foreground: hsl(0 0% 100%);
+  --muted: hsl(240 1.9608% 90%);
+  --muted-foreground: hsl(210 25% 7.8431%);
+  --accent: hsl(152.4 55.8% 93.7%);
+  --accent-foreground: hsl(142.9 69.2% 53.5%);
+  --destructive: hsl(356.3033 90.5579% 54.3137%);
+  --destructive-foreground: hsl(0 0% 100%);
+  --border: hsl(201.4286 30.4348% 90.9804%);
+  --input: hsl(200 23.0769% 97.4510%);
+  --ring: hsl(142.9 69.2% 53.5%);
+  --forest-50: hsl(120 60% 97%);
+  --forest-100: hsl(120 60% 93%);
+  --forest-200: hsl(120 50% 86%);
+  --forest-300: hsl(120 45% 75%);
+  --forest-400: hsl(123 38% 65%);
+  --forest-500: hsl(142.9 69.2% 53.5%);
+  --forest-600: hsl(142 70% 45%);
+  --forest-700: hsl(142 76% 36%);
+  --forest-800: hsl(142 85% 26%);
+  --forest-900: hsl(144 87% 16%);
+  --font-sans: 'Inter', sans-serif;
+  --font-serif: Georgia, serif;
+  --font-mono: Menlo, monospace;
+  --radius: 1.3rem;
+}
+
+.dark {
+  --background: hsl(0 0% 0%);
+  --foreground: hsl(200 6.6667% 91.1765%);
+  --card: hsl(228 9.8039% 10%);
+  --card-foreground: hsl(0 0% 85.0980%);
+  --popover: hsl(0 0% 0%);
+  --popover-foreground: hsl(200 6.6667% 91.1765%);
+  --primary: hsl(142.9 69.2% 53.5%);
+  --primary-foreground: hsl(0 0% 100%);
+  --secondary: hsl(195.0000 15.3846% 94.9020%);
+  --secondary-foreground: hsl(210 25% 7.8431%);
+  --muted: hsl(0 0% 9.4118%);
+  --muted-foreground: hsl(210 3.3898% 46.2745%);
+  --accent: hsl(144 100% 7%);
+  --accent-foreground: hsl(142.9 69.2% 53.5%);
+  --destructive: hsl(356.3033 90.5579% 54.3137%);
+  --destructive-foreground: hsl(0 0% 100%);
+  --border: hsl(210 5.2632% 14.9020%);
+  --input: hsl(207.6923 27.6596% 18.4314%);
+  --ring: hsl(142.9 69.2% 53.5%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-gradient-to-br from-forest-50 to-forest-100 text-foreground min-h-screen;
+  }
+}
+
+@layer components {
+  .nav-btn {
+    @apply px-4 py-2 rounded-lg text-sm font-medium text-forest-700 hover:text-forest-800 hover:bg-forest-100 transition-colors;
+  }
+  
+  .nav-btn.active {
+    @apply text-forest-800 bg-forest-100 font-semibold;
+  }
+
+  .animate-bounce-gentle {
+    animation: bounce-gentle 2s infinite;
+  }
+
+  .animate-sparkle {
+    animation: sparkle 2s infinite;
+  }
+
+  @keyframes bounce-gentle {
+    0%, 100% {
+      transform: translateY(0px);
+      animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+    50% {
+      transform: translateY(-5px);
+      animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+  }
+
+  @keyframes sparkle {
+    0%, 100% {
+      opacity: 0.2;
+      transform: scale(0.8);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+  }
+  .forest-gradient {
+    background: linear-gradient(135deg, hsl(var(--forest-50)), hsl(var(--forest-100)));
+  }
+  
+  .nav-btn {
+    @apply relative text-forest-600 hover:text-forest-800 font-medium transition-colors;
+  }
+  
+  .nav-btn.active {
+    @apply text-forest-800 font-semibold;
+  }
+  
+  .nav-btn.active::after {
+    content: '';
+    @apply absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-forest-600 rounded-full;
+  }
+}
+
+@layer utilities {
+  .animate-bounce-gentle {
+    animation: bounce 2s infinite;
+  }
+  
+  .animate-grow {
+    animation: grow 0.5s ease-out;
+  }
+  
+  .animate-sparkle {
+    animation: sparkle 1s ease-in-out infinite;
+  }
+  
+  @keyframes grow {
+    0% { 
+      transform: scale(0.8); 
+      opacity: 0.5; 
+    }
+    100% { 
+      transform: scale(1); 
+      opacity: 1; 
+    }
+  }
+  
+  @keyframes sparkle {
+    0%, 100% { 
+      opacity: 0; 
+      transform: scale(0.5); 
+    }
+    50% { 
+      opacity: 1; 
+      transform: scale(1.2); 
+    }
+  }
+}
